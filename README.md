@@ -10,3 +10,6 @@
 
 ## Strong Resume
 - https://www.ashokit.in/blog/how-do-you-build-a-strong-aws-resume
+
+## Project Idea
+- https://github.com/NotHarshhaa/DevOps-Projects
