@@ -1,6 +1,6 @@
 # DevOps-Free-Resource
 
-## Lab for Pratice
+## Lab for Practice
 - https://engineer.kodekloud.com/practice
 
 ## YouTube Channel
