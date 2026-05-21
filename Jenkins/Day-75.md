@@ -1,5 +1,3 @@
- Course Cover Today
-
 ### Module 1: Jenkins Installation & Setup
 
 ### Module 2: First Jenkins Job
