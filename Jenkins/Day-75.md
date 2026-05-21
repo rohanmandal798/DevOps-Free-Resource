@@ -1,23 +1,4 @@
----
-
-# Course Cover Today
-
-### Module 1: Jenkins Installation & Setup
-
-### Module 2: First Jenkins Job
-
-### Module 3: Parameterized Builds
-
-### Module 4: Build Periodically (Cron Jobs)
-
-### Module 5: Git Integration with Jenkins
-
-### Module 6: Maven Build Job
-
-### Module 7: Maven Build Job with **Invoke top-level Maven targets**
-
----
-# Course Cover Today
+ Course Cover Today
 
 ### Module 1: Jenkins Installation & Setup
 
