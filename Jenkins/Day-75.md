@@ -1,4 +1,7 @@
+---
+
 # Course Cover Today
+
 ### Module 1: Jenkins Installation & Setup
 
 ### Module 2: First Jenkins Job
@@ -10,23 +13,44 @@
 ### Module 5: Git Integration with Jenkins
 
 ### Module 6: Maven Build Job
+
 ### Module 7: Maven Build Job with **Invoke top-level Maven targets**
 
+---
+# Course Cover Today
 
-# Automated Script to install jenkins
+### Module 1: Jenkins Installation & Setup
 
-**NOTE : check security group if not working. allow port 8080**
+### Module 2: First Jenkins Job
 
-### Cleanup Old jenkins if getting error on installing
-Removes the old Jenkins repository configuration, old GPG keys and update the error
-### Copy the script to your Kali machine
+### Module 3: Parameterized Builds
 
-1. **nano install_jenkins.sh**
-2. **copy and paste**
+### Module 4: Build Periodically (Cron Jobs)
+
+### Module 5: Git Integration with Jenkins
+
+### Module 6: Maven Build Job
+
+### Module 7: Maven Build Job with **Invoke top-level Maven targets**
+
+---
+
+# Automated Script to Install Jenkins
+
+**NOTE: Check security group if not working. Allow port 8080**
+
+### Cleanup Old Jenkins if Getting Error on Installing
+
+Removes the old Jenkins repository configuration, old GPG keys and updates the package list.
+
+### Copy the Cleanup Script to Your Kali Machine
+
+1. **nano clean_jenkins.sh**
+2. **Copy and paste**
 3. **chmod +x clean_jenkins.sh**
 4. **sudo ./clean_jenkins.sh**
 
-```
+```bash
 #!/bin/bash
 
 # Cleanup script to remove old/misconfigured Jenkins repository
@@ -47,14 +71,16 @@ apt-get update -y
 echo "Cleanup complete! Now run: sudo bash install_jenkins.sh"
 ```
 
-## Copy the script to your Kali machine
+---
+
+## Copy the Installation Script to Your Kali Machine
 
 1. **nano install_jenkins.sh**
-2. **copy and paste**
+2. **Copy and paste**
 3. **chmod +x install_jenkins.sh**
 4. **sudo ./install_jenkins.sh**
 
-```
+```bash
 #!/bin/bash
 
 ################################################################################
@@ -338,22 +364,23 @@ main() {
 main
 ```
 
+---
 
+**Jenkins Default Directory: /var/lib/jenkins**
 
-**Jenkins default Directory: /var/lib/jenkins**
+---
 
+## Module 2: Create Your First Simple Job
 
-## Create a simple job and run shell command
-
-Great. Start with a very simple **Freestyle Job** that prints:
+Start with a very simple **Freestyle Job** that prints:
 
 ```bash
-echo "welcome to jenkins class"
+echo "Welcome to Jenkins class"
 ```
 
-Steps inside Jenkins:
+### Steps Inside Jenkins:
 
-### 1. Open Jenkins
+#### 1. Open Jenkins
 
 Go to:
 
@@ -365,98 +392,48 @@ Unlock Jenkins and install the suggested plugins if you haven't already.
 
 ---
 
-### 2. Create a new job
+#### 2. Create a New Job
 
 On the Jenkins dashboard:
 
-```text
-New Item
-```
-
-Enter:
-
-```text
-first-jenkins-job
-```
-
-Select:
-
-```text
-Freestyle project
-```
-
-Click:
-
-```text
-OK
-```
+1. Click **New Item**
+2. Enter job name: `first-jenkins-job`
+3. Select **Freestyle project**
+4. Click **OK**
 
 ---
 
-### 3. Add build step
+#### 3. Add Build Step
 
-Scroll down to:
-
-```text
-Build Steps
-```
-
-Click:
-
-```text
-Add build step
-```
-
-Choose:
-
-```text
-Execute shell
-```
-
-Paste:
+1. Scroll down to **Build Steps**
+2. Click **Add build step**
+3. Choose **Execute shell**
+4. Paste:
 
 ```bash
 #!/bin/bash
 
-echo "welcome to jenkins class"
+echo "Welcome to Jenkins class"
 ```
 
-Click:
-
-```text
-Save
-```
+5. Click **Save**
 
 ---
 
-### 4. Run the job
+#### 4. Run the Job
 
-Click:
+Click **Build Now**
 
-```text
-Build Now
-```
-
-You should see:
-
-```text
-#1
-```
-
-appear on the left.
+You should see **#1** appear on the left side.
 
 ---
 
-### 5. View output
+#### 5. View Output
 
-Click:
+1. Click **Build #1**
+2. Click **Console Output**
 
-```text
-Build #1
-→ Console Output
-```
-
-Expected:
+Expected output:
 
 ```text
 Started by user admin
@@ -464,65 +441,41 @@ Started by user admin
 Running as SYSTEM
 Building in workspace /var/lib/jenkins/workspace/first-jenkins-job
 
-+ echo welcome to jenkins class
-welcome to jenkins class
++ echo Welcome to Jenkins class
+Welcome to Jenkins class
 
 Finished: SUCCESS
 ```
 
-
-![[Pasted image 20260521021051.png]]
-
 ---
 
-## create a **Parameterized Jenkins Job** so Jenkins asks for input and prints:
+## Module 3: Parameterized Builds
+
+Create a **Parameterized Jenkins Job** where Jenkins asks for input and prints:
 
 ```text
 FirstName: Rohan
 LastName: Mandal
 ```
 
-### 1. Create a new job
+### Steps:
 
-Dashboard → **New Item**
+#### 1. Create a New Job
 
-Name:
-
-```text
-parameter-demo
-```
-
-Choose:
-
-```text
-Freestyle project
-```
-
-Click **OK**
+1. Dashboard → **New Item**
+2. Name: `parameter-demo`
+3. Choose **Freestyle project**
+4. Click **OK**
 
 ---
 
-### 2. Enable parameters
+#### 2. Enable Parameters
 
-Under **General**, check:
+1. Under **General**, check **This project is parameterized**
+2. Click **Add Parameter**
+3. Choose **String Parameter**
 
-```text
-This project is parameterized
-```
-
-Click:
-
-```text
-Add Parameter
-```
-
-Choose:
-
-```text
-String Parameter
-```
-
-Create parameter #1:
+**Parameter #1:**
 
 ```text
 Name: FirstName
@@ -530,9 +483,9 @@ Default Value: Rohan
 Description: Enter First Name
 ```
 
-Add another **String Parameter**
+4. Add another **String Parameter**
 
-Parameter #2:
+**Parameter #2:**
 
 ```text
 Name: LastName
@@ -542,17 +495,11 @@ Description: Enter Last Name
 
 ---
 
-### 3. Add build step
+#### 3. Add Build Step
 
-Go to:
-
-```text
-Build Steps
-→ Add build step
-→ Execute shell
-```
-
-Paste:
+1. Go to **Build Steps**
+2. Click **Add build step** → **Execute shell**
+3. Paste:
 
 ```bash
 #!/bin/bash
@@ -561,47 +508,26 @@ echo "FirstName: $FirstName"
 echo "LastName: $LastName"
 
 echo ""
-echo "welcome to jenkins class"
+echo "Welcome to Jenkins class"
 echo "Full Name: $FirstName $LastName"
 ```
 
-Save.
+4. Click **Save**
 
 ---
 
-### 4. Run job
+#### 4. Run Job
 
-Instead of **Build Now**, you'll now see:
+Instead of **Build Now**, you'll now see **Build with Parameters**
 
-```text
-Build with Parameters
-```
-
-Click it.
-
-You’ll see:
-
-```text
-FirstName: Rohan
-LastName: Mandal
-```
-
-Change values or keep defaults:
-
-```text
-FirstName: Rohan
-LastName: Mandal
-```
-
-Click:
-
-```text
-Build
-```
+1. Click **Build with Parameters**
+2. You'll see input fields for FirstName and LastName
+3. Keep defaults or change values
+4. Click **Build**
 
 ---
 
-### 5. View Console Output
+#### 5. View Console Output
 
 Expected output:
 
@@ -616,7 +542,7 @@ FirstName: Rohan
 + echo LastName: Mandal
 LastName: Mandal
 
-welcome to jenkins class
+Welcome to Jenkins class
 
 Full Name: Rohan Mandal
 
@@ -625,119 +551,82 @@ Finished: SUCCESS
 
 ---
 
-## **Build periodically**, which makes Jenkins automatically execute jobs using a cron schedule.
+## Module 4: Build Periodically (Cron Jobs)
 
-Let's make your job run automatically and print:
+Use **Build Periodically** to make Jenkins automatically execute jobs using a cron schedule.
 
-```text
-welcome to jenkins class
-Full Name: Rohan Mandal
-```
+Let's make your job run automatically every minute.
 
-every minute.
+### Steps:
 
-### 1. Open your existing job
+#### 1. Open Your Existing Job
 
-Go:
-
-```text
-Dashboard
-→ parameter-demo
-→ Configure
-```
+1. Go to Dashboard
+2. Click **parameter-demo**
+3. Click **Configure**
 
 ---
 
-### 2. Enable periodic build
+#### 2. Enable Periodic Build
 
-Scroll to:
-
-```text
-Build Triggers
-```
-
-Check:
-
-```text
-Build periodically
-```
-
-You will see a text box.
+1. Scroll to **Build Triggers**
+2. Check **Build periodically**
+3. You will see a text box for schedule
 
 ---
 
-### 3. Add schedule
+#### 3. Add Schedule
 
-https://crontab.guru/
-
-For every minute:
+**For every minute:**
 
 ```text
 * * * * *
 ```
 
-or Jenkins recommended:
+**Or Jenkins recommended:**
 
 ```text
 H/1 * * * *
 ```
 
-Explanation:
+**Cron Format:**
 
 ```text
 MINUTE HOUR DAY MONTH WEEKDAY
 ```
 
-Examples:
+**Examples:**
 
-Run every 5 minutes:
+- Run every 5 minutes: `H/5 * * * *`
+- Run every hour: `H * * * *`
+- Run daily at 9 AM: `0 9 * * *`
 
-```text
-H/5 * * * *
-```
+**Note:** `H` means Jenkins spreads jobs intelligently instead of launching everything at the exact same second.
 
-Run every hour:
+**Resource:** https://crontab.guru/
 
-```text
-H * * * *
-```
-
-Run daily at 9 AM:
-
-```text
-0 9 * * *
-```
-
-`H` means Jenkins spreads jobs intelligently instead of launching everything at the exact same second.
-
-NOTE : check kali linux date with date command, and UTC time zone.
+**Important:** Check your Kali Linux date and time zone with the `date` command to ensure timing is correct.
 
 ---
 
-### 4. Keep your shell build step
+#### 4. Update Your Shell Build Step
 
 ```bash
 #!/bin/bash
 
-echo "welcome to jenkins class"
+echo "Welcome to Jenkins class"
 echo "Full Name: $FirstName $LastName"
 echo "Build Time: $(date)"
 ```
 
-Save.
+5. Click **Save**
 
 ---
 
-### 5. Watch automatic builds
+#### 5. Watch Automatic Builds
 
-Go back:
-
-```text
-Dashboard
-→ parameter-demo
-```
-
-After one minute you should see:
+1. Go back to Dashboard → **parameter-demo**
+2. After one minute you should see builds appearing automatically:
 
 ```text
 #1
@@ -746,101 +635,59 @@ After one minute you should see:
 ...
 ```
 
-appearing automatically.
-
 ---
 
-### 6. Verify
+#### 6. Verify
 
-Open:
+1. Open **Build #2**
+2. Click **Console Output**
 
-```text
-Build #2
-→ Console Output
-```
-
-Example:
+Example output:
 
 ```text
 Started by timer
 
-welcome to jenkins class
+Welcome to Jenkins class
 Full Name: Rohan Mandal
-Build Time: Wed May 20 19:35:01 UTC
+Build Time: Wed May 21 19:35:01 UTC 2026
 
 Finished: SUCCESS
 ```
 
-Notice:
+**Notice:** `Started by timer` instead of `Started by user admin`
 
-```text
-Started by timer
-```
-
-instead of:
-
-```text
-Started by user admin
-```
-
-That confirms Jenkins triggered it automatically.
-
-You just used one of the most important CI concepts: **scheduled automation**. Next useful steps: GitHub webhook triggers, pipelines (`Jenkinsfile`), and Docker builds.
+This confirms Jenkins triggered it automatically.
 
 ---
 
-## Jenkins pulls code from GitHub and builds it. 
+## Module 5: Git Integration with Jenkins
 
-Repository: 
-[simple-admin-template repository](https://github.com/rohanmandal798/simple-admin-template?utm_source=chatgpt.com)
+Jenkins pulls code from GitHub and builds it.
 
-Let's create a Git-based Jenkins job.
+**Repository:** [simple-admin-template](https://github.com/rohanmandal798/simple-admin-template)
 
-### 1. Create a new job
+### Steps:
 
-Dashboard →
+#### 1. Create a New Job
 
-```text
-New Item
-```
-
-Name:
-
-```text
-github-build-demo
-```
-
-Choose:
-
-```text
-Freestyle project
-```
-
-Click **OK**
+1. Dashboard → **New Item**
+2. Name: `github-build-demo`
+3. Choose **Freestyle project**
+4. Click **OK**
 
 ---
 
-### 2. Connect Git repository
+#### 2. Connect Git Repository
 
-Scroll to:
-
-```text
-Source Code Management
-```
-
-Choose:
-
-```text
-Git
-```
-
-Repository URL:
+1. Scroll to **Source Code Management**
+2. Choose **Git**
+3. Repository URL:
 
 ```text
 https://github.com/rohanmandal798/simple-admin-template.git
 ```
 
-If Jenkins says Git is missing, install it on the server:
+**If Jenkins says Git is missing, install it on the server:**
 
 ```bash
 sudo apt install git -y
@@ -848,22 +695,16 @@ sudo apt install git -y
 
 ---
 
-### 3. Add a build step
+#### 3. Add a Build Step
 
-Go:
-
-```text
-Build Steps
-→ Add build step
-→ Execute shell
-```
-
-Paste:
+1. Go to **Build Steps**
+2. Click **Add build step** → **Execute shell**
+3. Paste:
 
 ```bash
 #!/bin/bash
 
-echo "welcome to jenkins class"
+echo "Welcome to Jenkins class"
 
 echo "Current directory:"
 pwd
@@ -881,22 +722,14 @@ echo "Build time:"
 date
 ```
 
+4. Click **Save**
+
 ---
 
-### 4. Save and build
+#### 4. Build and View Output
 
-Click:
-
-```text
-Build Now
-```
-
-Open:
-
-```text
-Build #1
-→ Console Output
-```
+1. Click **Build Now**
+2. Open **Build #1** → **Console Output**
 
 Expected flow:
 
@@ -910,7 +743,7 @@ https://github.com/rohanmandal798/simple-admin-template.git
 
 Checking out Revision ...
 
-welcome to jenkins class
+Welcome to Jenkins class
 
 Current directory:
 /var/lib/jenkins/workspace/github-build-demo
@@ -925,39 +758,40 @@ Git commit:
 abc123 initial commit
 
 Build time:
-Wed May ...
+Wed May 21 ...
 
 Finished: SUCCESS
 ```
 
-This teaches an important Jenkins concept:
+---
+
+**Workflow:**
 
 ```text
 GitHub Repo
-      ↓
+     ↓
 Jenkins clones repository
-      ↓
+     ↓
 Workspace created
-      ↓
+     ↓
 Build executes
-      ↓
+     ↓
 Output generated
 ```
 
-After this, a good next exercise for your DevOps portfolio is: build the HTML template and deploy it automatically to `/var/www/html` so Jenkins acts like a mini CI/CD pipeline.
+**Next Step:** Build the HTML template and deploy it automatically to `/var/www/html` for a complete CI/CD pipeline.
 
 ---
 
+## Module 6: Maven Build Job
 
-Nice choice. You're now moving from simple shell jobs into a real **Java + Maven CI build pipeline**. Maven projects use a `pom.xml` file to define dependencies and build steps. Jenkins commonly builds Maven projects using commands like `mvn clean package`. ([GitHub](https://github.com/apache/maven?utm_source=chatgpt.com "Apache Maven core"))
+Building a **Java + Maven CI build pipeline**.
 
-Your repository:
+Maven projects use a `pom.xml` file to define dependencies and build steps. Jenkins commonly builds Maven projects using commands like `mvn clean package`.
 
-[java-project-maven-new repository](https://github.com/rohanmandal798/java-project-maven-new?utm_source=chatgpt.com)
+**Repository:** [java-project-maven-new](https://github.com/rohanmandal798/java-project-maven-new)
 
-Let's build it in Jenkins step by step.
-
-## Step 1: Install Git + Maven on EC2
+### Step 1: Install Git + Maven on EC2
 
 SSH into your Jenkins server:
 
@@ -966,138 +800,81 @@ sudo apt update
 sudo apt install git maven -y
 ```
 
-Verify:
+Verify installation:
 
 ```bash
 git --version
 mvn --version
 ```
 
-Expected:
+Expected output:
 
 ```text
 Apache Maven 3.x
 Java version: 21
 ```
 
-Maven requires Java and uses the `pom.xml` build file. ([GitHub](https://github.com/apache/maven?utm_source=chatgpt.com "Apache Maven core"))
+---
+
+### Step 2: Create Jenkins Job
+
+1. Dashboard → **New Item**
+2. Name: `java-maven-build`
+3. Choose **Freestyle project**
+4. Click **OK**
 
 ---
 
-## Step 2: Create Jenkins Job
+### Step 3: Connect GitHub
 
-Dashboard →
-
-```text
-New Item
-```
-
-Name:
-
-```text
-java-maven-build
-```
-
-Choose:
-
-```text
-Freestyle project
-```
-
-Click:
-
-```text
-OK
-```
-
----
-
-## Step 3: Connect GitHub
-
-Go to:
-
-```text
-Source Code Management
-```
-
-Select:
-
-```text
-Git
-```
-
-Repository URL:
+1. Go to **Source Code Management**
+2. Select **Git**
+3. Repository URL:
 
 ```text
 https://github.com/rohanmandal798/java-project-maven-new.git
 ```
 
-Leave credentials empty because the repo is public.
+Leave credentials empty (public repo).
 
 ---
 
-## Step 4: Add Build Step
+### Step 4: Add Build Step
 
-Scroll:
-
-```text
-Build Steps
-→ Add build step
-→ Execute shell
-```
-
-Paste:
-
-```
-mvn clean package
-```
-
-Important:
+1. Scroll to **Build Steps**
+2. Click **Add build step** → **Execute shell**
+3. Paste:
 
 ```bash
 mvn clean package
 ```
 
-means:
+**What it does:**
 
 ```text
-clean    → remove old build files
-package  → compile + test + create JAR
+clean   → Remove old build files
+package → Compile + test + create JAR
 ```
 
-Maven commonly generates artifacts in:
+Maven generates artifacts in the `target/` directory.
 
-```text
-target/
-```
-
-([GitHub](https://github.com/Shubh2-0/Maven-Projects?utm_source=chatgpt.com "Shubh2-0/Maven-Projects"))
+4. Click **Save**
 
 ---
 
-## Step 5: Save and Build
+### Step 5: Build and Verify
 
-Click:
+1. Click **Build Now**
+2. Open **Build #1** → **Console Output**
 
-```text
-Build Now
-```
-
-Open:
-
-```text
-Build #1
-→ Console Output
-```
-
-Expected:
+Expected output:
 
 ```text
 Started by user admin
 
 Cloning repository...
 
-welcome to jenkins class
+Welcome to Jenkins class
 
 Current workspace:
 /var/lib/jenkins/workspace/java-maven-build
@@ -1119,7 +896,7 @@ Finished: SUCCESS
 
 ---
 
-## Step 6: Verify Artifact
+### Step 6: Verify Artifact
 
 SSH into EC2:
 
@@ -1130,7 +907,9 @@ ls target
 
 You should see a generated `.jar` file.
 
-You just completed:
+---
+
+**Workflow:**
 
 ```text
 GitHub
@@ -1144,71 +923,34 @@ Maven Build
 JAR Artifact
 ```
 
-This is the classic beginner CI pipeline used in many DevOps tutorials. Jenkins itself uses Maven-based workflows heavily in examples. ([GitHub](https://github.com/jenkins-docs/simple-java-maven-app?utm_source=chatgpt.com "jenkins-docs/simple-java-maven-app"))
-
-After this, a good next step is:
-
-```text
-GitHub → Jenkins → Maven → Docker → Deploy
-```
-
-That starts resembling real-world DevOps pipelines.
-
 ---
 
+## Module 7: Maven Build Job with Invoke Top-Level Maven Targets
 
-
-
-
-For your repository:
+For the repository:
 
 ```text
 https://github.com/rohanmandal798/java-project-maven-new.git
 ```
 
-using **Invoke top-level Maven targets** is actually cleaner than `Execute shell`.
+Using **Invoke top-level Maven targets** is cleaner than `Execute shell`.
 
-Follow these steps:
+### Steps:
 
-### 1. Create Job
+#### 1. Create Job
 
-Dashboard →
-
-```text
-New Item
-```
-
-Name:
-
-```text
-java-maven-build
-```
-
-Choose:
-
-```text
-Freestyle project
-```
-
-Click **OK**
+1. Dashboard → **New Item**
+2. Name: `java-maven-build-v2`
+3. Choose **Freestyle project**
+4. Click **OK**
 
 ---
 
-### 2. Configure Git Repository
+#### 2. Configure Git Repository
 
-Go to:
-
-```text
-Source Code Management
-```
-
-Select:
-
-```text
-Git
-```
-
-Repository URL:
+1. Go to **Source Code Management**
+2. Select **Git**
+3. Repository URL:
 
 ```text
 https://github.com/rohanmandal798/java-project-maven-new.git
@@ -1218,113 +960,50 @@ Leave credentials empty (public repo).
 
 ---
 
-### 3. Configure Maven in Jenkins
+#### 3. Configure Maven in Jenkins
 
-Go:
-
-```text
-Manage Jenkins
-→ Tools
-```
-
-Find:
-
-```text
-Maven installations
-```
-
-Click:
-
-```text
-Add Maven
-```
-
-Name:
-
-```text
-Maven-3
-```
-
-Check:
-
-```text
-Install automatically
-```
-
-Choose latest Maven version.
-
-Save.
+1. Go to **Manage Jenkins** → **Tools**
+2. Find **Maven installations**
+3. Click **Add Maven**
+4. Name: `Maven-3`
+5. Check **Install automatically**
+6. Choose the latest Maven version
+7. Click **Save**
 
 This tells Jenkins where Maven exists.
 
 ---
 
-### 4. Add Maven Build Step
+#### 4. Add Maven Build Step
 
-Back to your job:
+1. Go back to your job → **Configure**
+2. Scroll to **Build**
+3. Click **Add build step**
+4. Choose **Invoke top-level Maven targets**
 
-```text
-Configure
-→ Build
-→ Add build step
-```
+**Fill in:**
 
-Choose:
+- **Maven Version:** `Maven-3`
+- **Goals:** `clean package`
+- Leave other fields empty
 
-```text
-Invoke top-level Maven targets
-```
-
-You will see fields like:
+**What it does:**
 
 ```text
-Maven Version:
-Goals:
-POM:
-Options:
+clean   → Remove old files
+package → Compile + create JAR
 ```
 
-Fill:
-
-**Maven Version**
-
-```text
-Maven-3
-```
-
-**Goals**
-
-```text
-clean package
-```
-
-Leave others empty.
-
-Meaning:
-
-```text
-clean   → remove old files
-package → compile + create JAR
-```
+5. Click **Save**
 
 ---
 
-### 5. Save and Build
+#### 5. Build and Verify
 
-Click:
+1. Click **Build Now**
+2. Open **Build #1** → **Console Output**
 
-```text
-Build Now
-```
-
-Open:
-
-```text
-Build #1
-→ Console Output
-```
-
-Expected:
+Expected output:
 
 ```text
 Started by user admin
@@ -1343,16 +1022,14 @@ mvn clean package
 Finished: SUCCESS
 ```
 
-The generated artifact should appear here:
+---
+
+#### 6. Check Generated Artifact
+
+SSH into EC2:
 
 ```bash
-/var/lib/jenkins/workspace/java-maven-build/target
-```
-
-Check manually:
-
-```bash
-cd /var/lib/jenkins/workspace/java-maven-build
+cd /var/lib/jenkins/workspace/java-maven-build-v2
 ls target
 ```
 
@@ -1362,9 +1039,11 @@ You should see:
 java-project-maven-new-1.0.jar
 ```
 
-Difference between shell vs Maven build step:
+---
 
-**Execute shell**
+### Difference Between Execute Shell vs Maven Build Step:
+
+**Execute Shell:**
 
 ```bash
 mvn clean package
@@ -1372,14 +1051,14 @@ mvn clean package
 
 You manually type commands.
 
-**Invoke top-level Maven targets**
+**Invoke Top-Level Maven Targets:**
 
 ```text
 Goals: clean package
 ```
 
-Jenkins handles Maven internally.
-
-For Java projects, many teams prefer the Maven build step because it integrates better with Jenkins tooling.
+Jenkins handles Maven internally with better integration.
 
 ---
+
+**For Java projects, many teams prefer the Maven build step because it integrates better with Jenkins tooling.**
